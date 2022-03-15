@@ -2,8 +2,8 @@ package auth
 
 import (
 	"github.com/gin-gonic/gin"
-	"granada1/model/auth"
-	"granada1/model/table"
+	"granada/model/auth"
+	"granada/model/table"
 	"net/http"
 )
 

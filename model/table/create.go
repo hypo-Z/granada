@@ -2,7 +2,7 @@ package table
 
 import (
 	"github.com/goworkeryyt/go-core/global"
-	"granada1/utils"
+	"granada/utils"
 )
 
 // CreateUser 注册初始化

@@ -6,17 +6,16 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/goworkeryyt/go-core/global"
 	"go.uber.org/zap"
-	"granada1/assets"
-	"granada1/model/redis"
-	"granada1/pkg"
-	"granada1/utils"
+	"granada/assets"
+	"granada/model/redis"
+	"granada/pkg"
+	"granada/utils"
 	"net/http"
 	"time"
 )
 
-
-var s =redis.Store{
-	Expiration: time.Minute*5,
+var s = redis.Store{
+	Expiration: time.Minute * 5,
 	PreKey:     "@",
 	Context:    context.Background(),
 }
@@ -31,7 +30,7 @@ func SendCode(c *gin.Context) {
 		return
 	}
 	key := s.PreKey + acc
-	fmt.Println("code:",s.Get(key,true))
+	fmt.Println("code:", s.Get(key, true))
 
 	//发送验证码
 	if err := SendEmail(acc, code); err != nil {

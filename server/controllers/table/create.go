@@ -3,7 +3,7 @@ package table
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"granada1/model/table"
+	"granada/model/table"
 	"net/http"
 )
 

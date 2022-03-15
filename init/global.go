@@ -7,10 +7,10 @@ import (
 	"github.com/goworkeryyt/go-core/global"
 	"github.com/goworkeryyt/go-core/redis"
 	"github.com/goworkeryyt/go-core/zap"
-	"granada1/model/table"
+	"granada/model/table"
 )
 
-func init()  {
+func init() {
 	// 获取程序运行环境，默认会读取 resources/active.yaml 文件中配置的运行环境
 	global.ENV = env.Active()
 
