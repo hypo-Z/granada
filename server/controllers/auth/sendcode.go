@@ -29,9 +29,6 @@ func SendCode(c *gin.Context) {
 		global.LOG.Error("保存验证码错误", zap.Error(err))
 		return
 	}
-	key := s.PreKey + acc
-	fmt.Println("code:", s.Get(key, true))
-
 	//发送验证码
 	if err := SendEmail(acc, code); err != nil {
 		global.LOG.Error("发送验证码错误", zap.Error(err))

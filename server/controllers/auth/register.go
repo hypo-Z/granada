@@ -19,11 +19,10 @@ func Register(c *gin.Context) {
 		})
 		return
 	}
-
 	if s.Verify(d.Email, d.Code, true) {
 		u.Password = d.Password
 		u.Email = d.Email
-		u.Name = d.Name
+		u.UserName = d.Name
 		u.CreateUser()
 		c.JSON(http.StatusOK, gin.H{
 			"status":  http.StatusOK,

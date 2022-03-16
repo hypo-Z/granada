@@ -1,7 +1,6 @@
 package auth
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"granada/model/auth"
 	"granada/model/table"
@@ -21,7 +20,6 @@ func Login(c *gin.Context) {
 		return
 	}
 	u.SelectUserByEmail(d.Email)
-	fmt.Println("password", u.Password)
 	if d.Password == u.Password {
 		// 设置cookie
 		c.SetCookie("auth_cookie", "123", 600, "/",

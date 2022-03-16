@@ -1,6 +1,7 @@
 package table
 
 import (
+	"fmt"
 	"github.com/goworkeryyt/go-core/global"
 	"granada/utils"
 )
@@ -12,28 +13,40 @@ func (u *User) CreateUser() {
 }
 
 // CreateUserInfo 添加基本信息
-func (u *User) CreateUserInfo(uid string) {
-	u.SelectUserByUid(uid)
-	global.DB.Create(u)
+func (u *User) CreateUserInfo() {
+	nu:=&User{}
+	nu.SelectUserByUid(u.UserID)
+	if nu.UserID=="" {
+		fmt.Println("uid is null")
+		return
+	}
+	fmt.Printf("beffer addinfo user %+v\n",nu)
+	nu.Phone=u.Phone
+	nu.Age=u.Age
+	nu.Birthday=u.Birthday
+	nu.Summary=u.Summary
+	nu.Gender=u.Gender
+	global.DB.Updates(nu)
 }
 
 // CreateAddress 添加地址
-func (u *User) CreateAddress(uid string) {
-	u.SelectUserByUid(uid)
-	u.Address.AddressID = utils.GetID()
+func (u *User) CreateAddress() {
+	u.Address.ID = utils.GetID()
 	global.DB.Create(&u.Address)
 }
 
 // CreateCommunity 创建社群
-func (u *User) CreateCommunity(uid string) {
-	u.SelectUserByUid(uid)
+func (u *User) CreateCommunity(uid ,cn string) {
+	nu:=&User{}
+	nu.SelectUserByUid(uid)
 	c := &Community{}
-	c.CommunityID = utils.GetID()
-	c.CreatedBy = u
+	c.ID = utils.GetID()
+	c.Name=cn
+	c.CreatedBy = nu
 	c.MemberSize = 1
-	c.Users = append([]*User{}, u)
-	u.Communitys = append(u.Communitys, c)
-	global.DB.Create(u)
+	c.Users = append([]*User{}, nu)
+	u.Communities = append(u.Communities, c)
+	global.DB.Create(&u.Communities)
 }
 
 // AddCommunity 加入社群号
@@ -49,19 +62,20 @@ func (u *User) AddCommunity(uid, cid string) {
 	c.MemberSize++
 	c.Users = append([]*User{}, u)
 	global.DB.Create(&c.Users)
-	u.Communitys = append(u.Communitys, c)
-	global.DB.Create(u)
+	u.Communities = append(u.Communities, c)
+	global.DB.Create(&u.Communities)
 }
 
 // CreateRelation 创建关系
 func (u *User) CreateRelation(uid string, t int) {
-	u.SelectUserByUid(uid)
+	nu:=&User{}
+	nu.SelectUserByUid(uid)
 	r := &Relation{}
-	r.Users = append([]*User{}, u)
-	r.RelationID = utils.GetID()
-	r.RelationType = t
+	r.Users = append([]*User{}, nu)
+	r.ID = utils.GetID()
+	r.Type = t
 	u.Relations = append(u.Relations, r)
-	global.DB.Create(u)
+	global.DB.Create(&u.Relations)
 }
 
 // CreateHeadImage 添加头像

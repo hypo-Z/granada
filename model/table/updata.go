@@ -14,7 +14,7 @@ func (u *User)UpdateAddressByUid(addressId string) {
 
 // UpdateCommunityByUid 更新社群
 func (u *User)UpdateCommunityByUid(communityId string) {
-	global.DB.Updates(u.Communitys[0]).Where("CommunityID=?",communityId)
+	global.DB.Updates(u.Communities[0]).Where("CommunityID=?",communityId)
 }
 
 // UpdateRelationByUid 更新关系

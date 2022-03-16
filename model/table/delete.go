@@ -16,10 +16,10 @@ func (u *User)DeleteAddressByUid(addressId string) {
 
 // DeleteCommunityByUid 删除社群
 func (u *User)DeleteCommunityByUid(communityId string) {
-	global.DB.Delete(u.Communitys[0].CommunityID).Where("CommunityID=?",communityId)
+	global.DB.Delete(u.Communities[0].ID).Where("CommunityID=?",communityId)
 }
 
 // DeleteRelationByUid 删除关系
 func (u *User)DeleteRelationByUid(relationId string) {
-	global.DB.Delete(u.Relations[0].RelationID).Where("RelationID=?",relationId)
+	global.DB.Delete(u.Relations[0].ID).Where("RelationID=?",relationId)
 }

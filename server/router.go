@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/goworkeryyt/go-core/global"
 	. "granada/server/controllers/auth"
-	"granada/server/controllers/table"
+	. "granada/server/controllers/table"
 	"granada/server/middlewares"
 )
 
@@ -27,11 +27,12 @@ func InitApiRouter(r *gin.Engine) *gin.Engine {
 	}
 	app := r.Group("/app", middlewares.AuthMiddleWare())
 	{
-		app.POST("/user/info", table.AddInfo)
-		app.POST("/user/address", table.AddAddress)
-		app.POST("/user/community", table.CreateCommunity)
-		app.POST("/user/relation", table.CreateRelation)
-		app.GET("/user/ids", table.SelectAllUserID)
+		app.POST("/user/info", AddInfo)
+		app.POST("/user/address", AddAddress)
+		app.POST("/user/community", CreateCommunity)
+		app.POST("/user/relation", CreateRelation)
+		app.GET("/user/ids", SelectAllUserID)
+		app.GET("/user/address/:uid",SelectAddress)
 	}
 
 	return r

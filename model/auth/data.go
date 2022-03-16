@@ -1,6 +1,7 @@
 package auth
 
 type Data struct {
+	UserID      string `json:"user_id"`      //用户号
 	Name        string `json:"name"`         //用户名
 	Phone       string `json:"phone"`        //用户手机号
 	Email       string `json:"email"`        //用户邮箱

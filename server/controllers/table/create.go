@@ -7,7 +7,8 @@ import (
 	"net/http"
 )
 
-/*{
+/*AddInfo
+{
 	"user_id":""
 	"phone":"",
 	"summary":"",
@@ -17,7 +18,7 @@ import (
 }*/
 func AddInfo(c *gin.Context) {
 	u := table.User{}
-	err := c.BindJSON(&u)
+	err:=c.BindJSON(&u)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status":  http.StatusBadRequest,
@@ -25,15 +26,16 @@ func AddInfo(c *gin.Context) {
 		})
 		return
 	}
-	u.CreateUserInfo(u.UserID)
+	u.CreateUserInfo()
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "添加信息成功",
 	})
-	fmt.Printf("user:%+v", u)
+	fmt.Printf("after addinfo user:%+v\n", u)
 }
 
-/* CreateAddress 地址初始化 json格式：
+/*AddAddress
+地址初始化 json格式：
 {
 "user_id":"",
 "Address":{
@@ -42,7 +44,7 @@ func AddInfo(c *gin.Context) {
     "City" :"" ,
     "State"  :"" ,
     "Zipcode" :""
-   }
+	}
 }*/
 func AddAddress(c *gin.Context) {
 	u := table.User{}
@@ -54,15 +56,24 @@ func AddAddress(c *gin.Context) {
 		})
 		return
 	}
-	u.CreateAddress(u.UserID)
+	u.SelectUserByUid(u.UserID)
+	if u.UserID==""{
+		c.String(400,"user_id is null")
+		return
+	}
+	if u.Address.ID!=""{
+		c.String(400,"address have create")
+		return
+	}
+	u.CreateAddress()
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
-		"message": "注册成功",
+		"message": "添加地址成功",
 	})
-	fmt.Printf("user:%+v", u)
+	fmt.Printf("after add address user:%+v\n", &u)
 }
 
-/* CreateRelation 关系初始化 json格式：
+/*CreateRelation 关系初始化 json格式：
 {
 	"UserID":"",
 	"Relation":
@@ -81,22 +92,28 @@ func CreateRelation(c *gin.Context) {
 		})
 		return
 	}
-	u.CreateRelation(u.UserID, u.Relations[0].RelationType)
+	u.SelectUserByUid(u.UserID)
+	if u.UserID==""{
+		c.String(400,"user_id is null")
+		return
+	}
+	u.CreateRelation(u.Relations[0].Users[0].UserID, u.Relations[0].Type)
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "建立关系成功",
 	})
-	fmt.Printf("user:%+v", u)
+	fmt.Printf("after create relation user:%+v\n", u)
 }
 
-/*社群初始化
+/*CreateCommunity
+社群初始化
 
 {
 	"user_id":"",
-	"community":
-	{
+	"communities":
+	[{
 		"name":"",
-	}
+	}]
 
 }*/
 func CreateCommunity(c *gin.Context) {
@@ -109,14 +126,17 @@ func CreateCommunity(c *gin.Context) {
 		})
 		return
 	}
-	u.CreateCommunity(u.UserID)
+	u.SelectUserByUid(u.UserID)
+	u.CreateCommunity(u.UserID,u.Communities[0].Name)
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "创建社群成功",
 	})
+	fmt.Printf("after create community user:%+v\n", u)
 }
 
-/*加入社群
+/*AddCommunity
+加入社群
 {
 	"user_id":"",
 	"community":
@@ -135,14 +155,15 @@ func AddCommunity(c *gin.Context) {
 		})
 		return
 	}
-	u.AddCommunity(u.UserID, u.Communitys[0].CommunityID)
+	u.AddCommunity(u.UserID, u.Communities[0].ID)
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "创建社群成功",
 	})
 }
 
-/*头像初始化
+/*AddHeadImage
+头像初始化
 {
 	"user_id":"",
 	"head_images":
@@ -167,5 +188,5 @@ func AddHeadImage(c *gin.Context) {
 		"status":  http.StatusOK,
 		"message": "新增头像成功",
 	})
-	fmt.Printf("user:%+v", u)
+	fmt.Printf("after add headimage user:%+v\n", u)
 }

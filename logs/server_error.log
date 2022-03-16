@@ -60,3 +60,15 @@
 [debug]2022/03/14 - 16:59:02.971	ERROR	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/captcha/captcha.go:49	RedisStoreGetError!	{"error": "redis: nil"}
 [debug]2022/03/14 - 18:29:13.003	ERROR	/home/zhb/go/src/granada/model/redis/redis.go:44	RedisStoreGetError!	{"error": "redis: nil"}
 [debug]2022/03/14 - 18:39:47.519	ERROR	/home/zhb/go/src/granada/model/redis/redis.go:44	RedisStoreGetError!	{"error": "redis: nil"}
+[debug]2022/03/15 - 14:27:50.833	ERROR	/home/zhb/go/src/granada/model/redis/redis.go:44	RedisStoreGetError!	{"error": "redis: nil"}
+[debug]2022/03/15 - 14:31:35.367	ERROR	/home/zhb/go/src/granada/model/redis/redis.go:44	RedisStoreGetError!	{"error": "redis: nil"}
+[debug]2022/03/15 - 14:35:08.036	ERROR	/home/zhb/go/src/granada/model/redis/redis.go:44	RedisStoreGetError!	{"error": "redis: nil"}
+[debug]2022/03/15 - 14:36:35.874	ERROR	/home/zhb/go/src/granada/model/redis/redis.go:44	RedisStoreGetError!	{"error": "redis: nil"}
+[debug]2022/03/15 - 14:44:53.517	ERROR	/home/zhb/go/src/granada/server/controllers/auth/sendcode.go:37	发送验证码错误	{"error": "550 Mail content denied. http://service.mail.qq.com/cgi-bin/help?subtype=1&&id=20022&&no=1000726 [MDIPc3GPW+BrFp0ODBLEqZMe+GFPfGGuhpiI0QOoenn0VIvLTBEMurAU279ltGfWxg== IP: 101.228.106.56]"}
+[debug]2022/03/15 - 17:14:03.798	ERROR	/home/zhb/go/src/granada/model/redis/redis.go:44	RedisStoreGetError!	{"error": "redis: nil"}
+[debug]2022/03/15 - 17:31:55.398	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "Error 1061: Duplicate key name 'name'"}
+[debug]2022/03/15 - 17:47:07.146	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "Error 1061: Duplicate key name 'name'"}
+[debug]2022/03/15 - 17:50:26.157	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "Error 1061: Duplicate key name 'user_name'"}
+[debug]2022/03/16 - 17:15:02.200	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`))' at line 1"}
+[debug]2022/03/16 - 17:32:33.023	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "invalid field found for struct granada/model/table.User's field HeadImages: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
+[debug]2022/03/16 - 18:06:40.058	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "invalid field found for struct granada/model/table.User's field HeadImages: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
