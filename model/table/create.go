@@ -12,47 +12,26 @@ func (u *User) CreateUser() {
 	global.DB.Create(u)
 }
 
-// CreateUserInfo 添加基本信息
-func (u *User) CreateUserInfo() {
-	nu:=&User{}
-	nu.SelectUserByUid(u.UserID)
-	if nu.UserID=="" {
-		fmt.Println("uid is null")
-		return
-	}
-	fmt.Printf("beffer addinfo user %+v\n",nu)
-	nu.Phone=u.Phone
-	nu.Age=u.Age
-	nu.Birthday=u.Birthday
-	nu.Summary=u.Summary
-	nu.Gender=u.Gender
-	global.DB.Updates(nu)
-}
-
-// CreateAddress 添加地址
-func (u *User) CreateAddress() {
-	u.Address.ID = utils.GetID()
-	global.DB.Create(&u.Address)
-}
-
 // CreateCommunity 创建社群
-func (u *User) CreateCommunity(uid ,cn string) {
-	nu:=&User{}
-	nu.SelectUserByUid(uid)
-	c := &Community{}
+func (u *User) CreateCommunity() {
+	nu := User{}
+	nu.SelectUserByUid(u.UserID)
+	fmt.Printf("beffer user %+v\n", nu)
+	c := Community{}
 	c.ID = utils.GetID()
-	c.Name=cn
+	c.Name = u.Communities[0].Name
 	c.CreatedBy = nu
 	c.MemberSize = 1
-	c.Users = append([]*User{}, nu)
-	u.Communities = append(u.Communities, c)
-	global.DB.Create(&u.Communities)
+	c.Users = append([]User{}, nu)
+	nu.Communities = append([]Community{}, c)
+	global.DB.Updates(nu)
 }
 
 // AddCommunity 加入社群号
 func (u *User) AddCommunity(uid, cid string) {
-	u.SelectUserByUid(uid)
-	c := &Community{}
+	nu := User{}
+	nu.SelectUserByUid(uid)
+	c := Community{}
 	switch cid {
 	case "number":
 		c.SelectCommunityByNumber(cid)
@@ -60,31 +39,33 @@ func (u *User) AddCommunity(uid, cid string) {
 		c.SelectCommunityByName(cid)
 	}
 	c.MemberSize++
-	c.Users = append([]*User{}, u)
+	c.Users = append([]User{}, nu)
 	global.DB.Create(&c.Users)
-	u.Communities = append(u.Communities, c)
+	u.Communities = append([]Community{}, c)
 	global.DB.Create(&u.Communities)
 }
 
 // CreateRelation 创建关系
-func (u *User) CreateRelation(uid string, t int) {
-	nu:=&User{}
-	nu.SelectUserByUid(uid)
-	r := &Relation{}
-	r.Users = append([]*User{}, nu)
+func (u *User) CreateRelation() {
+	nu := User{}
+	nu.SelectUserByUid(u.Relations[0].Users[0].UserID)
+	r := Relation{}
+	r.Users = append([]User{}, nu)
 	r.ID = utils.GetID()
-	r.Type = t
-	u.Relations = append(u.Relations, r)
-	global.DB.Create(&u.Relations)
+	r.Type = u.Relations[0].Type
+	u.SelectUserByUid(u.UserID)
+	u.Relations = append([]Relation{}, r)
+	global.DB.Updates(nu)
 }
 
 // CreateHeadImage 添加头像
 func (u *User) CreateHeadImage(uid, t string, s int64) {
-	u.SelectUserByUid(uid)
+	nu := User{}
+	nu.SelectUserByUid(uid)
 	h := HeadImage{}
 	h.HeadImageID = utils.GetID()
 	h.Type = t
 	h.Size = s
 	u.HeadImages = append(u.HeadImages, h)
-	global.DB.Create(&u.HeadImages)
+	global.DB.Updates(nu)
 }

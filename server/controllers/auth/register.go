@@ -20,6 +20,14 @@ func Register(c *gin.Context) {
 		return
 	}
 	if s.Verify(d.Email, d.Code, true) {
+		u.SelectUserByEmail(d.Email)
+		if u.Email==d.Email {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"status":  http.StatusBadRequest,
+				"message": "注册失败，账号已经注册",
+			})
+			return
+		}
 		u.Password = d.Password
 		u.Email = d.Email
 		u.UserName = d.Name

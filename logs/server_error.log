@@ -72,3 +72,4 @@
 [debug]2022/03/16 - 17:15:02.200	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`))' at line 1"}
 [debug]2022/03/16 - 17:32:33.023	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "invalid field found for struct granada/model/table.User's field HeadImages: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
 [debug]2022/03/16 - 18:06:40.058	ERROR	/home/zhb/go/src/granada/model/table/automigrate.go:12	数据表自动迁移失败	{"error": "invalid field found for struct granada/model/table.User's field HeadImages: define a valid foreign key for relations or implement the Valuer/Scanner interface"}
+[debug]2022/03/17 - 10:53:57.854	ERROR	/home/zhb/go/src/granada/model/redis/redis.go:44	RedisStoreGetError!	{"error": "redis: nil"}

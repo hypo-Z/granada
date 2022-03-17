@@ -18,7 +18,7 @@ import (
 }*/
 func AddInfo(c *gin.Context) {
 	u := table.User{}
-	err:=c.BindJSON(&u)
+	err := c.BindJSON(&u)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status":  http.StatusBadRequest,
@@ -26,7 +26,7 @@ func AddInfo(c *gin.Context) {
 		})
 		return
 	}
-	u.CreateUserInfo()
+	u.UpdateUserInfo()
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "添加信息成功",
@@ -49,6 +49,10 @@ func AddInfo(c *gin.Context) {
 func AddAddress(c *gin.Context) {
 	u := table.User{}
 	err := c.BindJSON(&u)
+	if u.UserID == "" {
+		c.String(400, "id is null")
+		return
+	}
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status":  http.StatusBadRequest,
@@ -56,16 +60,7 @@ func AddAddress(c *gin.Context) {
 		})
 		return
 	}
-	u.SelectUserByUid(u.UserID)
-	if u.UserID==""{
-		c.String(400,"user_id is null")
-		return
-	}
-	if u.Address.ID!=""{
-		c.String(400,"address have create")
-		return
-	}
-	u.CreateAddress()
+	u.UpdateAddress()
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "添加地址成功",
@@ -78,13 +73,14 @@ func AddAddress(c *gin.Context) {
 	"UserID":"",
 	"Relation":
 	[{
-		"relationType":"",            // 关系类型
-		"users":""          // 成员
+		"Type":"",            // 关系类型
+		"users":[{}]         // 成员
 	}]
 }*/
 func CreateRelation(c *gin.Context) {
 	u := table.User{}
 	err := c.BindJSON(&u)
+	fmt.Printf("before relation %+v",u)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status":  http.StatusBadRequest,
@@ -92,12 +88,7 @@ func CreateRelation(c *gin.Context) {
 		})
 		return
 	}
-	u.SelectUserByUid(u.UserID)
-	if u.UserID==""{
-		c.String(400,"user_id is null")
-		return
-	}
-	u.CreateRelation(u.Relations[0].Users[0].UserID, u.Relations[0].Type)
+	u.CreateRelation()
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "建立关系成功",
@@ -126,8 +117,7 @@ func CreateCommunity(c *gin.Context) {
 		})
 		return
 	}
-	u.SelectUserByUid(u.UserID)
-	u.CreateCommunity(u.UserID,u.Communities[0].Name)
+	u.CreateCommunity()
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "创建社群成功",

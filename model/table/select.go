@@ -10,7 +10,7 @@ func (u *User)SelectAllUserID()  {
 
 // SelectUserByUid 查询用户
 func (u *User)SelectUserByUid(uid string) {
-	global.DB.Where("user_id=?",uid).Find(&u)
+	global.DB.Find(u,uid)
 }
 
 // SelectUserByName 查询用户
