@@ -55,17 +55,17 @@ func (u *User) CreateRelation() {
 	r.Type = u.Relations[0].Type
 	u.SelectUserByUid(u.UserID)
 	u.Relations = append([]Relation{}, r)
-	global.DB.Updates(nu)
+	global.DB.Updates(u)
 }
 
 // CreateHeadImage 添加头像
-func (u *User) CreateHeadImage(uid, t string, s int64) {
+func (u *User) CreateHeadImage() {
 	nu := User{}
-	nu.SelectUserByUid(uid)
+	nu.SelectUserByUid(u.UserID)
 	h := HeadImage{}
 	h.HeadImageID = utils.GetID()
-	h.Type = t
-	h.Size = s
-	u.HeadImages = append(u.HeadImages, h)
+	h.Type = u.HeadImages[0].Type
+	h.Size = u.HeadImages[0].Size
+	nu.HeadImages = append([]HeadImage{}, h)
 	global.DB.Updates(nu)
 }

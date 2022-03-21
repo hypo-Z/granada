@@ -173,7 +173,7 @@ func AddHeadImage(c *gin.Context) {
 		})
 		return
 	}
-	u.CreateHeadImage(u.UserID, u.HeadImages[0].Type, u.HeadImages[0].Size)
+	u.CreateHeadImage()
 	c.JSON(http.StatusOK, gin.H{
 		"status":  http.StatusOK,
 		"message": "新增头像成功",

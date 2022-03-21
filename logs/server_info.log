@@ -230,3 +230,9 @@
 [debug]2022/03/17 - 15:38:20.342	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}
 [debug]2022/03/17 - 15:40:51.672	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}
 [debug]2022/03/17 - 15:45:18.670	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}
+[debug]2022/03/21 - 10:20:32.101	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}
+[debug]2022/03/21 - 10:31:00.119	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}
+[debug]2022/03/21 - 10:34:30.224	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}
+[debug]2022/03/21 - 10:38:17.888	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}
+[debug]2022/03/21 - 10:47:48.477	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}
+[debug]2022/03/21 - 10:53:35.033	INFO	/home/zhb/go/pkg/mod/github.com/goworkeryyt/go-core@v0.0.0-20220228152021-bb4a7583767c/redis/redis.go:38	redis connect ping response:	{"pong": "PONG"}

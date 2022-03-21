@@ -31,6 +31,7 @@ func InitApiRouter(r *gin.Engine) *gin.Engine {
 		app.POST("/user/address", AddAddress)
 		app.POST("/user/my_community", CreateCommunity)
 		app.POST("/user/relation", CreateRelation)
+		app.POST("/user/images", AddHeadImage)
 		app.GET("/user/ids", SelectAllUserID)
 		app.GET("/user/address/:uid",SelectAddress)
 	}
