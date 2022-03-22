@@ -3,9 +3,10 @@ package table
 import "github.com/goworkeryyt/go-core/global"
 
 // SelectAllUserID 查找所有用户id
-func (u *User)SelectAllUserID()  {
+func (u *User)SelectAllUserID() []string {
 	var U []string
-	global.DB.Pluck("user_id",U).Find(u)
+	global.DB.Table("user").Pluck("user_id",&U)
+	return U
 }
 
 // SelectUserByUid 查询用户
