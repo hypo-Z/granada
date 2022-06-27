@@ -2,10 +2,10 @@ package utils
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 	"time"
 )
-
 
 const (
 	workerIDOffset  = 12
@@ -76,9 +76,8 @@ func timestamp() uint64 {
 func GetID() string {
 	id, err := New(42)
 	if err != nil {
-		panic(err)
+		fmt.Printf("GetID error: %v\n", err)
 	}
 	uid := strconv.FormatInt(<-id, 10)
 	return uid
 }
-

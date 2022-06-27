@@ -25,15 +25,15 @@ func InitApiRouter(r *gin.Engine) *gin.Engine {
 		auth.POST("login", Login)
 
 	}
-	app := r.Group("/app", middlewares.AuthMiddleWare())
+	app := r.Group("/app/user", middlewares.AuthMiddleWare())
 	{
-		app.POST("/user/info", AddInfo)
-		app.POST("/user/address", AddAddress)
-		app.POST("/user/my_community", CreateCommunity)
-		app.POST("/user/relation", CreateRelation)
-		app.POST("/user/images", AddHeadImage)
-		app.GET("/user/ids", SelectAllUserID)
-		app.GET("/user/address/:uid",SelectAddress)
+		app.POST("/info", AddInfo)
+		app.POST("/address", AddAddress)
+		app.POST("/my_community", CreateCommunity)
+		app.POST("/relation", CreateRelation)
+		app.POST("/images", AddHeadImage)
+		app.GET("/ids", SelectAllUserID)
+		app.GET("/address/:uid", SelectAddress)
 	}
 
 	return r
